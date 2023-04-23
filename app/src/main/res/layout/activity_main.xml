@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="Overdraw">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.lovecalculater20.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             tools:context=".ui.MainActivity">
+
+            <EditText
+                android:id="@+id/fname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/inputs_background"
+                android:ems="10"
+                android:fontFamily="sans-serif-black"
+                android:hint="@string/your_name"
+                android:inputType="textPersonName"
+                android:text="@={viewmodel.fname}"
+                android:textColor="@color/second_color"
+                android:textColorHint="#feeaca"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:textColor="@color/second_color"
+                android:fontFamily="sans-serif-black"
+                android:background="@drawable/inputs_background"
+                android:textColorHint="#feeaca"
+                android:text="@={viewmodel.sname}"
+                android:inputType="textPersonName"
+                android:hint="@string/your_loves_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fname"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/calculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/second_color"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/calculate"
+                android:onClick="@{viewmodel::getResults}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lname" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:textColor="@color/second_color"
+                android:textSize="16sp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/calculate_the_percentage_of_love_between_you_two"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dots"
+                android:textColor="@color/second_color"
+                android:textSize="50sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/circleProgress"
+                app:layout_constraintEnd_toEndOf="@+id/circleProgress"
+                app:layout_constraintStart_toStartOf="@+id/circleProgress"
+                app:layout_constraintTop_toTopOf="@+id/circleProgress" />
+
+            <TextView
+                android:id="@+id/love_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-black"
+                tools:text="All the best!!"
+                android:visibility="invisible"
+                android:textColor="@color/second_color"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleProgress" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:visibility="invisible"
+                style="@style/SpinKitView.Large.Wave"
+                app:SpinKit_Color="@color/second_color"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculate" />
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circleProgress"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                app:cpb_progressbar_color ="@color/second_color"
+                app:cpb_background_progressbar_width ="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculate" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/connection" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
